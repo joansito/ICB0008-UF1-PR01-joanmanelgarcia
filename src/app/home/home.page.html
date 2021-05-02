@@ -15,7 +15,7 @@
     <ion-item  (click)="goToDetails(movie,'show')">
       {{movie.title}}</ion-item>
     <ion-icon name="create-outline" slot="end" (click)="goToDetails(movie,'editar')"></ion-icon>
-    <ion-icon name="trash-outline" slot="end" (click)="onDeleteItem(movie.id,movie.title)"></ion-icon>
+    <ion-icon name="trash-outline" slot="end" (click)="onDeleteItem(movie.titledoc,movie.title)"></ion-icon>
     </ion-item>
   </ion-list>
 </ion-content>

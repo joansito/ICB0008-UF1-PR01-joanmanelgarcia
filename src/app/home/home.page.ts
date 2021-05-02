@@ -16,7 +16,6 @@ export class HomePage {
 
   º
   constructor(private router: Router, public homeService: HomeService, public firestore: AngularFirestore,private toastController: ToastController,public activatedRoute: ActivatedRoute) { 
-    
     let todoRef = firestore.collection('peliculas');
     todoRef.get().subscribe(res => {
       if (res.empty) {
@@ -29,28 +28,25 @@ export class HomePage {
               this.objectList.push(item)
 
             })
-            let counter=0
             this.movieList = response.results;
             this.movieList.forEach(function (part) {
-              part.id = counter;
-              let todoRef = firestore.doc('peliculas/' + part.id);
+              let todoRef = firestore.doc('peliculas/' + part.title);
               todoRef.set({
-                id: part.id,
+                titledoc:part.title,
                 title: part.title,
                 description: part.opening_crawl,
                 date: part.release_date,
                 director: part.director
               })
-              counter+=1;
             }
 
             );//movielist forEarch
 
 
+            this.onRefreshMovies();
           }) //home service
           
           
-          this.onRefreshMovies();
       } else {
         this.onRefreshMovies();
         
@@ -59,14 +55,6 @@ export class HomePage {
     })
   }//constructor
   ngOnInit(){
-  let dataRecv= this.activatedRoute.snapshot.paramMap.get('reload')
-  {
-    if(dataRecv==='reload'){
-      
-    this.onRefreshMovies();
-    this.router.navigateByUrl('/home')
-    }
-  }
   }
 
   onRefreshMovies(){
@@ -81,12 +69,11 @@ export class HomePage {
 
       });
     this.movieList = movieListTemp;
-    console.log(movieListTemp.length+"ESTO ES LO QUE MIDE EN ONREFRESHMOVIES")
 
   }
-  onDeleteItem(id,title) {
+  onDeleteItem(titledoc,title) {
 
-    this.firestore.collection("peliculas").doc(id.toString()).delete().then(() => {
+    this.firestore.collection("peliculas").doc(titledoc).delete().then(() => {
       this.presenToast(title+ " has been deleted");
       this.onRefreshMovies();
     }).catch((error) => {

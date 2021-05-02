@@ -25,14 +25,14 @@ export class FilmdetailPage implements OnInit {
   }
 
   ngOnInit() {
-    
+  
     let tipoOperacion=this.activatedRoute.snapshot.paramMap.get('edit')
     if(tipoOperacion=='editar'){
       this.isShow=true;
       this.onSetData()
       this.editable=null
   }else if(tipoOperacion=='anadir'){
-    this.onSetId()
+  
     this.isShow=true;
     this.editable=null
   }else if(tipoOperacion=='show'){
@@ -55,50 +55,40 @@ onSetData(){
 onAddEdit(){if(this.title!==''){
   let tipoOperacion=this.activatedRoute.snapshot.paramMap.get('edit')
   if(tipoOperacion=='anadir'){
-  
-    console.log(this.title)
-    let todoRef = this.firestore.doc('peliculas/' + this.length);
+    let todoRef = this.firestore.doc('peliculas/'+this.title);
     todoRef.set({
-    id: this.length,
+    titledoc:this.title,
     title: this.title,
     description: this.description,
     date: this.date,
     director: this.director
-  })
-  
+  }
+  )
+  this.title="";
+  this.description="";
+  this.director="";
+  this.date="";
   }else if(tipoOperacion=='editar'){
   
     let dataRecv= this.activatedRoute.snapshot.paramMap.get('dataObj')
     let obj = JSON.parse(dataRecv)
-    this.firestore.collection("peliculas").doc(obj.id.toString()).update({
+    this.firestore.collection("peliculas").doc(obj.titledoc).update({
       title: this.title,
       description: this.description,
       date: this.date,
       director: this.director
+      
   });
   
   }
-  this.router.navigateByUrl('/home');
+  this.router.navigateByUrl('/home/');
 }else{
   this.presenToast("Intoduce a title")
 }
   
 
 }
-onSetId(){  
-  
-  let movieListTemp = [];
-  let length;
-  this.firestore.collection("peliculas").get()
-    .subscribe(function (querySnapshot) {
-      querySnapshot.forEach(function (doc) {
-        movieListTemp.push(doc.data())
-      });
-      length=movieListTemp.length
-    }
-    
-    );
-}
+
 
 async presenToast(text: string){
   const toast = await this.toastController.create({

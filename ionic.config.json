@@ -1,5 +1,8 @@
 {
   "name": "ICB0008-UF1-PR01-joanmanelgarcia",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
   "type": "angular"
 }

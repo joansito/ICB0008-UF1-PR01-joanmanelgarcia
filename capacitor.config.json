@@ -1,0 +1,13 @@
+{
+  "appId": "io.ionic.starter",
+  "appName": "ICB0008-UF1-PR01-joanmanelgarcia",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

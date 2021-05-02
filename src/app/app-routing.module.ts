@@ -8,8 +8,32 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'signup',
     pathMatch: 'full'
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+  },
+  {
+    path: 'home/:reload',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+  },
+  {
+    path: 'signup',
+    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+  },
+  {
+    path: 'filmdetail/:dataObj/:edit',
+    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
+  },
+  {
+    path: 'filmdetail',
+    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
+  },
+  {
+    path: 'filmdetail/:edit',
+    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
   },
 ];
 

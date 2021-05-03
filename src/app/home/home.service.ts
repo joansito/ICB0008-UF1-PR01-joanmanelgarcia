@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class HomeService {
 
   constructor(public http: HttpClient) { }
-  public getList(){
+  public getList() {
     return this.http.get('https://swapi.dev/api/films/');
   }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AngularFirestore} from '@angular/fire/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import * as firebase from 'firebase';
@@ -15,7 +15,7 @@ export class HomePage {
   newItem = '';
 
   º
-  constructor(private router: Router, public homeService: HomeService, public firestore: AngularFirestore,private toastController: ToastController,public activatedRoute: ActivatedRoute) { 
+  constructor(private router: Router, public homeService: HomeService, public firestore: AngularFirestore, private toastController: ToastController, public activatedRoute: ActivatedRoute) {
     let todoRef = firestore.collection('peliculas');
     todoRef.get().subscribe(res => {
       if (res.empty) {
@@ -32,7 +32,7 @@ export class HomePage {
             this.movieList.forEach(function (part) {
               let todoRef = firestore.doc('peliculas/' + part.title);
               todoRef.set({
-                titledoc:part.title,
+                titledoc: part.title,
                 title: part.title,
                 description: part.opening_crawl,
                 date: part.release_date,
@@ -45,19 +45,19 @@ export class HomePage {
 
             this.onRefreshMovies();
           }) //home service
-          
-          
+
+
       } else {
         this.onRefreshMovies();
-        
+
       }
 
     })
   }//constructor
-  ngOnInit(){
+  ngOnInit() {
   }
 
-  onRefreshMovies(){
+  onRefreshMovies() {
     let movieListTemp = [];
     this.firestore.collection("peliculas").get()
       .subscribe(function (querySnapshot) {
@@ -71,32 +71,32 @@ export class HomePage {
     this.movieList = movieListTemp;
 
   }
-  onDeleteItem(titledoc,title) {
+  onDeleteItem(titledoc, title) {
 
     this.firestore.collection("peliculas").doc(titledoc).delete().then(() => {
-      this.presenToast(title+ " has been deleted");
+      this.presenToast(title + " has been deleted");
       this.onRefreshMovies();
     }).catch((error) => {
       console.error("Error removing document: ", error);
     });
   }
 
-  async presenToast(text: string){
+  async presenToast(text: string) {
     const toast = await this.toastController.create({
-      message:text,
+      message: text,
       duration: 3000
     });
     toast.present();
   }
 
-  goToDetails(movie,edit){
-    let dataString= JSON.stringify(movie);
-    this.router.navigate(['filmdetail', dataString,edit]);
+  goToDetails(movie, edit) {
+    let dataString = JSON.stringify(movie);
+    this.router.navigate(['filmdetail', dataString, edit]);
   }
 
-  goToAdd(){
-    let tipo='anadir';
-    this.router.navigate(['filmdetail/'+tipo]);
+  goToAdd() {
+    let tipo = 'anadir';
+    this.router.navigate(['filmdetail/' + tipo]);
   }
 
 }//clase

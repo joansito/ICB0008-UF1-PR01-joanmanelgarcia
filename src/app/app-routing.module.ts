@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: '',
@@ -13,27 +13,27 @@ const routes: Routes = [
   },
   {
     path: 'login',
-    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
+    loadChildren: () => import('./login/login.module').then(m => m.LoginPageModule)
   },
   {
     path: 'home/:reload',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
+    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
   },
   {
     path: 'signup',
-    loadChildren: () => import('./signup/signup.module').then( m => m.SignupPageModule)
+    loadChildren: () => import('./signup/signup.module').then(m => m.SignupPageModule)
   },
   {
     path: 'filmdetail/:dataObj/:edit',
-    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
+    loadChildren: () => import('./filmdetail/filmdetail.module').then(m => m.FilmdetailPageModule)
   },
   {
     path: 'filmdetail',
-    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
+    loadChildren: () => import('./filmdetail/filmdetail.module').then(m => m.FilmdetailPageModule)
   },
   {
     path: 'filmdetail/:edit',
-    loadChildren: () => import('./filmdetail/filmdetail.module').then( m => m.FilmdetailPageModule)
+    loadChildren: () => import('./filmdetail/filmdetail.module').then(m => m.FilmdetailPageModule)
   },
 ];
 

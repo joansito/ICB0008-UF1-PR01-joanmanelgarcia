@@ -1,23 +1,31 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title><ion-icon name="chevron-back-outline" routerLink="/home/"> 
-      <ion-icon name="refresh-outline"></ion-icon> </ion-icon> FilmDetail</ion-title>
+    <ion-title
+      ><ion-icon name="chevron-back-outline" routerLink="/home/">
+        <ion-icon name="refresh-outline"></ion-icon>
+      </ion-icon>
+      FilmDetail</ion-title
+    >
   </ion-toolbar>
 </ion-header>
 
-<ion-content overflow-scroll=“true” >
+<ion-content overflow-scroll="“true”">
   <ion-item>
     <ion-title>Title</ion-title>
-    <ion-input [(ngModel)]="title" [disabled]="editable">
-    </ion-input>
+    <ion-input [(ngModel)]="title" [disabled]="editable"> </ion-input>
   </ion-item>
   <ion-item>
     <ion-title>Description</ion-title>
   </ion-item>
   <ion-item text-wrap>
-    <ion-textarea rows="6" cols="20" [(ngModel)]="description" editable></ion-textarea>
+    <ion-textarea
+      rows="6"
+      cols="20"
+      [(ngModel)]="description"
+      editable
+    ></ion-textarea>
   </ion-item>
-<ion-item>
+  <ion-item>
     <ion-title>Director</ion-title>
     <ion-input [(ngModel)]="director" [disabled]="editable"></ion-input>
   </ion-item>
@@ -25,8 +33,11 @@
     <ion-title>Date</ion-title>
     <ion-input [(ngModel)]="date" [disabled]="editable"></ion-input>
   </ion-item>
-    
-    <ion-button color="danger" expand="full" routerLink="/home" *ngIf="isShow">Cancel</ion-button>
-    <ion-button color="primary" expand="full" *ngIf="isShow" (click)="onAddEdit()">Save</ion-button>
- 
+
+  <ion-button color="danger" expand="full" routerLink="/home" *ngIf="isShow"
+    >Cancel</ion-button
+  >
+  <ion-button color="primary" expand="full" *ngIf="isShow" (click)="onAddEdit()"
+    >Save</ion-button
+  >
 </ion-content>
